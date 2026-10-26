@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>App do Cachorro dos Sonhos</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Barra Superior -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo-icon"><i class="fa-solid fa-paw"></i></div>
+        <div class="brand-text">
+          <h1>PetFlow</h1>
+          <span>Descubra seu Cão Ideal</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btnReset" class="icon-btn" title="Recomeçar do zero"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+      </div>
+    </header>
+
+    <!-- Alternador Mobile (Abas) -->
+    <nav class="mobile-tabs" id="mobileTabs">
+      <button class="tab-btn active" data-tab="form"><i class="fa-solid fa-list-check"></i> <span>Perguntas</span></button>
+      <button class="tab-btn" data-tab="flowchart"><i class="fa-solid fa-diagram-project"></i> <span>Fluxograma</span> <span class="badge" id="flowCountBadge">0</span></button>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="app-main">
+      <!-- Painel das Perguntas -->
+      <section class="panel panel-form" id="formSection">
+        <div class="progress-container">
+          <div class="progress-labels">
+            <span id="stepCounter">Etapa 1 de 10</span>
+            <span id="stepPercent">10%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBar"></div>
+          </div>
+        </div>
+
+        <div class="card-question" id="questionCard">
+          <div class="question-header">
+            <span class="question-pill" id="questionPill">Pergunta 1</span>
+            <div class="question-icon-wrap" id="questionIconWrap">
+              <i class="fa-solid fa-dog" id="questionIcon"></i>
+            </div>
+          </div>
+
+          <h2 class="question-title" id="questionTitle">Carregando pergunta...</h2>
+          <p class="question-hint" id="questionHint">Escolha uma sugestão ou escreva com suas próprias palavras:</p>
+
+          <div class="chips-container" id="chipsContainer">
+            <!-- Pílulas de sugestão inseridas via JS -->
+          </div>
+
+          <div class="input-container">
+            <textarea id="answerInput" rows="3" placeholder="Digite sua resposta aqui..."></textarea>
+            <span class="input-focus-border"></span>
+          </div>
+
+          <div class="nav-actions">
+            <button id="btnPrev" class="btn btn-secondary"><i class="fa-solid fa-chevron-left"></i> Voltar</button>
+            <button id="btnNext" class="btn btn-primary">Próxima <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- Tela de Conclusão (Oculta por padrão) -->
+        <div class="card-complete" id="completionCard" style="display: none;">
+          <div class="complete-badge"><i class="fa-solid fa-crown"></i></div>
+          <h2>Fluxograma Completo!</h2>
+          <p>O perfil do seu cachorro dos sonhos foi mapeado com sucesso em um diagrama visual exclusivo.</p>
+          <div class="complete-actions">
+            <button id="btnViewFlow" class="btn btn-primary"><i class="fa-solid fa-diagram-project"></i> Ver Fluxograma</button>
+            <button id="btnDownload" class="btn btn-secondary"><i class="fa-solid fa-download"></i> Baixar Resumo</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Painel do Fluxograma -->
+      <section class="panel panel-flowchart" id="flowchartSection">
+        <div class="flowchart-header">
+          <div class="flowchart-info">
+            <h3><i class="fa-solid fa-diagram-project"></i> Fluxograma Dinâmico</h3>
+            <p>Construído em tempo real a cada escolha</p>
+          </div>
+          <div class="canvas-controls">
+            <button id="btnZoomIn" class="icon-btn sm" title="Aumentar Zoom"><i class="fa-solid fa-plus"></i></button>
+            <button id="btnZoomOut" class="icon-btn sm" title="Diminuir Zoom"><i class="fa-solid fa-minus"></i></button>
+            <button id="btnResetView" class="icon-btn sm" title="Centralizar"><i class="fa-solid fa-expand"></i></button>
+          </div>
+        </div>
+
+        <div class="flowchart-viewport" id="flowchartViewport">
+          <svg id="flowchartSvg" class="flowchart-svg"></svg>
+          <div class="flowchart-nodes-container" id="nodesContainer">
+            <!-- Nós gerados dinamicamente via JS -->
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
